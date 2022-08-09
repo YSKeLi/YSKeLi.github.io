@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="这是在手机termux(zerotermux)的环境下搭建早苗的教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于在手机上面部署早苗">
+<meta property="og:url" content="http://example.com/2022/08/10/%E5%85%B3%E4%BA%8E%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E9%9D%A2%E9%83%A8%E7%BD%B2%E6%97%A9%E8%8B%97/index.html">
+<meta property="og:site_name" content="可莉的小屋">
+<meta property="og:description" content="这是在手机termux(zerotermux)的环境下搭建早苗的教程">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2022/08/10/%E5%85%B3%E4%BA%8E%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E9%9D%A2%E9%83%A8%E7%BD%B2%E6%97%A9%E8%8B%97/assets/1.PNG">
+<meta property="og:image" content="http://example.com/2022/08/10/%E5%85%B3%E4%BA%8E%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E9%9D%A2%E9%83%A8%E7%BD%B2%E6%97%A9%E8%8B%97/assets/2.jpg">
+<meta property="og:image" content="http://example.com/2022/08/10/%E5%85%B3%E4%BA%8E%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E9%9D%A2%E9%83%A8%E7%BD%B2%E6%97%A9%E8%8B%97/assets/3.jpg">
+<meta property="og:image" content="http://example.com/2022/08/10/%E5%85%B3%E4%BA%8E%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E9%9D%A2%E9%83%A8%E7%BD%B2%E6%97%A9%E8%8B%97/assets/4.jpg">
+<meta property="og:image" content="http://example.com/2022/08/10/%E5%85%B3%E4%BA%8E%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E9%9D%A2%E9%83%A8%E7%BD%B2%E6%97%A9%E8%8B%97/assets/5.jpg">
+<meta property="og:image" content="http://example.com/2022/08/10/%E5%85%B3%E4%BA%8E%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E9%9D%A2%E9%83%A8%E7%BD%B2%E6%97%A9%E8%8B%97/assets/6.jpg">
+<meta property="og:image" content="http://example.com/2022/08/10/%E5%85%B3%E4%BA%8E%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E9%9D%A2%E9%83%A8%E7%BD%B2%E6%97%A9%E8%8B%97/assets/7.jpg">
+<meta property="og:image" content="http://example.com/2022/08/10/%E5%85%B3%E4%BA%8E%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E9%9D%A2%E9%83%A8%E7%BD%B2%E6%97%A9%E8%8B%97/assets/8.jpg">
+<meta property="og:image" content="http://example.com/2022/08/10/%E5%85%B3%E4%BA%8E%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E9%9D%A2%E9%83%A8%E7%BD%B2%E6%97%A9%E8%8B%97/assets/9.jpg">
+<meta property="og:image" content="http://example.com/2022/08/10/%E5%85%B3%E4%BA%8E%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E9%9D%A2%E9%83%A8%E7%BD%B2%E6%97%A9%E8%8B%97/assets/10.jpg">
+<meta property="og:image" content="http://example.com/2022/08/10/%E5%85%B3%E4%BA%8E%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E9%9D%A2%E9%83%A8%E7%BD%B2%E6%97%A9%E8%8B%97/assets/11.jpg">
+<meta property="og:image" content="http://example.com/2022/08/10/%E5%85%B3%E4%BA%8E%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E9%9D%A2%E9%83%A8%E7%BD%B2%E6%97%A9%E8%8B%97/assets/12.jpg">
+<meta property="og:image" content="http://example.com/2022/08/10/%E5%85%B3%E4%BA%8E%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E9%9D%A2%E9%83%A8%E7%BD%B2%E6%97%A9%E8%8B%97/assets/13.jpg">
+<meta property="og:image" content="http://example.com/2022/08/10/%E5%85%B3%E4%BA%8E%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E9%9D%A2%E9%83%A8%E7%BD%B2%E6%97%A9%E8%8B%97/assets/14.png">
+<meta property="og:image" content="http://example.com/2022/08/10/%E5%85%B3%E4%BA%8E%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E9%9D%A2%E9%83%A8%E7%BD%B2%E6%97%A9%E8%8B%97/assets/15.jpg">
+<meta property="og:image" content="http://example.com/2022/08/10/%E5%85%B3%E4%BA%8E%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E9%9D%A2%E9%83%A8%E7%BD%B2%E6%97%A9%E8%8B%97/assets/16.jpg">
+<meta property="article:published_time" content="2022-08-09T17:36:49.000Z">
+<meta property="article:modified_time" content="2022-08-09T23:07:06.684Z">
+<meta property="article:author" content="KeLi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/08/10/%E5%85%B3%E4%BA%8E%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E9%9D%A2%E9%83%A8%E7%BD%B2%E6%97%A9%E8%8B%97/assets/1.PNG">
+
+
+<link rel="canonical" href="http://example.com/2022/08/10/%E5%85%B3%E4%BA%8E%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E9%9D%A2%E9%83%A8%E7%BD%B2%E6%97%A9%E8%8B%97/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/08/10/%E5%85%B3%E4%BA%8E%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E9%9D%A2%E9%83%A8%E7%BD%B2%E6%97%A9%E8%8B%97/","path":"2022/08/10/关于在手机上面部署早苗/","title":"关于在手机上面部署早苗"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>关于在手机上面部署早苗 | 可莉的小屋</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">可莉的小屋</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">诶？这里是可莉的秘密基地哦，欢迎旅行者来玩哦～</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">KeLi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/10/%E5%85%B3%E4%BA%8E%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E9%9D%A2%E9%83%A8%E7%BD%B2%E6%97%A9%E8%8B%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KeLi">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="可莉的小屋">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="关于在手机上面部署早苗 | 可莉的小屋">
+      <meta itemprop="description" content="这是在手机termux(zerotermux)的环境下搭建早苗的教程">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          关于在手机上面部署早苗
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-08-10 01:36:49 / Modified: 07:07:06" itemprop="dateCreated datePublished" datetime="2022-08-10T01:36:49+08:00">2022-08-10</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">这是在手机termux(zerotermux)的环境下搭建早苗的教程</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>首先，我们要下载一个termux或者zerotermux<br>以下链接为termux<br>无论你是哪一个，都是可以的<br>1：<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/fdroid/repo/com.termux_118.apk">从清华源下载</a><br>2：<a target="_blank" rel="noopener" href="https://f-droid.org/zh_Hans/packages/com.termux/">从F-droid下载</a><br>3：<a target="_blank" rel="noopener" href="https://github.com/termux/termux-app/releases">从Github Release下载</a><br>4：<a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.termux">从Google商店下载</a> –不推荐<br>然后呢，我们打开并给他储存权限<br>输入以下命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">termux-setup-storage</span><br></pre></td></tr></table></figure>
+<p>或者你也可以通过手机设设置里面来给予权限<br>因为每个手机方法都差不多但又有那么一点点区别<br>所以我就不演示了</p>
+<p>然后我们输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -c &quot;$(curl -LfsS &#x27;https://gitee.com/mo2/linux/raw/master/debian.sh&#x27;)&quot;</span><br></pre></td></tr></table></figure>
+<p>在出现以下界面时按下回车<br><img src="./assets/1.PNG" alt="1"><br>然后你会看到这个界面<br>继续回车<br><img src="./assets/2.jpg" alt="2"><br>然后选择第一个，zh_CN：简体中文_中国内地<br><img src="./assets/3.jpg" alt="3"><br>然后选择proot容器<br><img src="./assets/4.jpg" alt="4"><br>接下来他会提示你要克隆才能使用<br>直接回车继续就行<br>他提示你是否换源时就回车换成北外源<br>然后就等待，出现要你选择而停顿的时候就直接回车<br>不出意外的话应该会有3次选择<br>出现这个时按下回车即可<br><img src="./assets/5.jpg" alt="5"><br>然后他会安装相关依赖<br>过程自动的<br>直到你出现这个图时<br><img src="./assets/6.jpg" alt="6"><br>选择proot容器</p>
+<p>然后接下来的选择终端配色和字体时随意时随意选<br><img src="./assets/7.jpg" alt="7"><br><img src="./assets/8.jpg" alt="8"><br>在这个界面选择yes<br><img src="./assets/9.jpg" alt="9"><br>这个界面直接回车<br><img src="./assets/10.jpg" alt="10"><br>问你是否要启用一言时选yes<br>然后timezone时直接yes<br>注意<br>下个界面的共享sd目录选择4 /sdcard<br><img src="./assets/11.jpg" alt="11"><br>然后紧接着选择yes<br>共享home目录就直接回车就行<br>然后根据提示按下3次回车<br>然后在这个界面选择arm64发行版列表<br><img src="./assets/12.jpg" alt="12"><br>在下一个界面选择安装的容器时推荐选择ubuntu<br>版本就选20.04(LTS)<br>然后启动proot容器<br>然后他会下载系统并解压<br>耐心等待就好<br>然后会弹出一个是否允许始终在后台运行，并选择允许<br>然后后面都全自动，我没有特别标明的地方卡住回车就行</p>
+<p>当问你是否选择新建一个sudo用户选择是<br>用户名随意，最好英文字母<br>让你填密码也随意，只要自己记得住<br>然后问你是否把刚刚你创建的用户设置成默认用户时选择No<br>然后zsh那个窗口选择是<br>然后在”Do you want to delete ~/zsh.sh &amp; ~/zsh-i.sh after configruation的这个界面选择是<br>然后问你是否启动tmoe tools的时候选择是<br>然后等待<br>因为是在下载和解压东西，所以看你自己网络</p>
+<p>然后出现选择的时候，直接回车(有连续俩次选择)<br>然后继续等待<br>出现这个界面时选择最后一个性(exit退出)<br><img src="./assets/13.jpg" alt="13"><br>当你出现这个图标时，关闭termux<br><img src="./assets/14.png" alt="14"><br>然后去下载威力同步<br><a target="_blank" rel="noopener" href="https://www.verysync.com/download.php?platform=android">点我下载威力同步</a><br>安装好打开，给他存储和定位权限，然后为威力同步关闭电池优化<br>允许威力同步始终在后台运行<br>然后点击右上角加号，选择添加密钥或链接<br>复制下面链接，添加进威力同步进行同步</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://link.verysync.com/#f=%E7%AA%9D&amp;sz=105E4&amp;k=S4HTEQ23BSTPD5J56UY22BZOMOEBYMD3ALODKEXMUGMX7BV7BIAA4H&amp;d=VYUIQR3QJKJSYEONR5MNEC4HLXCL&amp;t=1&amp;tm=1656486040957&amp;v=v2.13.2&amp;a=1</span><br></pre></td></tr></table></figure>
+<p>等待同步完成<br>同步完成后的文件应该会在你/storage/emulated/0/Download/VerySync/里面<br>当然，我们只需要里面那个install-once.sh的文件</p>
+<p>同步完成之后<br>我们打开termux<br>输入debian</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">debian</span><br></pre></td></tr></table></figure>
+<p>然后输入sd</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sd</span><br></pre></td></tr></table></figure>
+<p>然后输入download</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">download</span><br></pre></td></tr></table></figure>
+<p>然后输入verysync</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">verysync</span><br></pre></td></tr></table></figure>
+<p>然后输入窝</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">窝</span><br></pre></td></tr></table></figure>
+<p>然后输入教程-有教程不看，非要问问问，多花点时间看教程会短命？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">教程-有教程不看，非要问问问，多花点时间看教程会短命？</span><br></pre></td></tr></table></figure>
+<p>然后输入在手机上部署的教程</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在手机上部署的教程</span><br></pre></td></tr></table></figure>
+<p>然后输入sh install-once.sh</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh install-once.sh</span><br></pre></td></tr></table></figure>
+<p>开始部署<br><img src="./assets/15.jpg" alt="15"><br>这个ws地址在威力同步过来的文件里面<br>目录是<br>/窝/ip.ini<br>使用手机自带的文本浏览器就可以看了<br>那个端口是20001~20056<br>然后按下回车<br>你可以把qq的陌生设备登入保护关掉再在这个里面登入<br>(qq左上角头像-设置-帐号安全-登入设备管理-陌生设备导登入保护)<br>然后输入要登入的qq号回车<br>输入qq密码回车<br>然后问你需要自启动脚本写入吗的时候，如果你不是华为手机，就回车就行了</p>
+<p>当出现这个的时候，你就已经成功了<br><img src="./assets/16.jpg" alt="16"></p>
+<p>对了，弄好之后别忘了按下ctrl c停止<br>然后输入cd &amp;&amp; cqhttp &amp;&amp; nano config.yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd &amp;&amp; cqhttp &amp;&amp; nano config.yml</span><br></pre></td></tr></table></figure>
+<p>然后修改report-self-massage后面的false为true<br>空格别删掉哦<br>然后按下ctrl x再按一下回车<br>再按一下y并回车<br>然后输入./go-chqttp</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./go-cqhttp</span><br></pre></td></tr></table></figure>
+<p>如果说你不小心关掉了termux或者是手机没电关机导致termux被关闭<br>你可以输入以下命令来直接运行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">debian</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cqhttp &amp;&amp; ./go-cqhttp</span><br></pre></td></tr></table></figure>
+<p>到这里就搭建完成了<br>更多功能请去往<br>群聊636233109(幻想乡早苗保护协会)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">636233109</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://jq.qq.com/?_wv=1027&k=5nQZiLtL">点我直接加群</a><br>功能文档</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.yuque.com/km57bt/hlhnxg</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/km57bt/hlhnxg">点我直接访问</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KeLi</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
